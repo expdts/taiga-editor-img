@@ -1,0 +1,44 @@
+<div [style.padding.rem]="1">
+  <tui-radio-list
+    [formControl]="typeText"
+    [items]="listType"
+    [itemContent]="contentType"
+    [style.flex-direction]="'row'"
+    [style.width]="'max-content'"
+  />
+  <ng-template
+    #contentType
+    let-item
+  >
+    <span tuiTitle>
+        {{ item.name }}
+    </span>
+  </ng-template>
+</div>
+
+@if (typeText.value?.id === 1) {
+  <div [style.padding.rem]="1">
+    <tui-editor
+      [formControl]="text"
+      [tools]="builtInTools"
+    >
+    </tui-editor>
+  </div>
+} @else if (typeText.value?.id === 2) {
+  <div [style.padding.rem]="1">
+    <tui-textfield
+      tuiTextfieldSize="m"
+    >
+      <textarea
+        tuiTextarea
+        [formControl]="text"
+        [tuiTextfieldCleaner]="true"
+        [min]="16"
+      ></textarea>
+    </tui-textfield>
+  </div>
+}
+
+<div [style.padding.rem]="1">
+  <tui-editor-socket [content]="text.value"/>
+</div>
